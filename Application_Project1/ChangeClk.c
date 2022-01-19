@@ -1,3 +1,9 @@
+/* File provided by TA
+ * Used to change the clock
+*/
+  
+
+
 #include "xc.h"
 #include "ChangeClk.h"
 

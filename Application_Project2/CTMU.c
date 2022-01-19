@@ -1,3 +1,9 @@
+/*
+ * File:   main.c
+ * Author: Steven, Anand, Jenna
+ * Created on November 28, 2021, 11:30 AM
+ */
+
 
 #include <p24F16KA101.h>
 #include "xc.h"
@@ -14,16 +20,16 @@
 
 
 void CTMUInit(){
-    CTMUCONbits.CTMUEN = 0; //Disable, enable in do_CTMU
-    CTMUCONbits.CTMUSIDL = 0; //Continue operation in idle mode
-    CTMUCONbits.TGEN = 0; //Disable edge delay
-    CTMUCONbits.EDGEN = 0; //Disable edges
-    CTMUCONbits.EDGSEQEN = 0; //No edge sequence needed
-    CTMUCONbits.IDISSEN = 0; //Do not discharge to ground.
-    CTMUCONbits.CTTRIG = 0; //Trigger output disabled. Enable current sources in SW
+    CTMUCONbits.CTMUEN = 0;                 //Disable, enable in do_CTMU
+    CTMUCONbits.CTMUSIDL = 0;               //Continue operation in idle mode
+    CTMUCONbits.TGEN = 0;                   //Disable edge delay
+    CTMUCONbits.EDGEN = 0;                  //Disable edges
+    CTMUCONbits.EDGSEQEN = 0;               //No edge sequence needed
+    CTMUCONbits.IDISSEN = 0;                //Do not discharge to ground.
+    CTMUCONbits.CTTRIG = 0;                 //Trigger output disabled. Enable current sources in SW
     
-    CTMUICONbits.ITRIM = 0b111010; //Nominal current output
-    CTMUICONbits.IRNG = 0b10; //10X base current 
+    CTMUICONbits.ITRIM = 0b111010;          //Nominal current output
+    CTMUICONbits.IRNG = 0b10;               //10X base current 
     
     CTMUCONbits.EDG1STAT = 0;
     CTMUCONbits.EDG2STAT = 1;
@@ -33,7 +39,7 @@ void CTMUInit(){
 
 void ADC1_for_CTMU_init(void){
     
-    AD1CON1bits.ADON = 1; //Turn on ADC module
+    AD1CON1bits.ADON = 1;                   //Turn on ADC module
     
     //Read on AD11 (and only on AD5)
     AD1CSSLbits.CSSL0 = 0;
@@ -43,45 +49,45 @@ void ADC1_for_CTMU_init(void){
     AD1CSSLbits.CSSL4 = 0;
     AD1CSSLbits.CSSL5 = 0;
     AD1CSSLbits.CSSL10 = 0;
-    AD1CSSLbits.CSSL11 = 0; //Omit from input scan
+    AD1CSSLbits.CSSL11 = 0;                 //Omit from input scan
     AD1CSSLbits.CSSL12 = 0;
     
-    AD1PCFGbits.PCFG12 = 0; //Analog read (set as analog pin)
+    AD1PCFGbits.PCFG12 = 0;                 //Analog read (set as analog pin)
     
     AD1CHSbits.CH0NB = 0;
-    AD1CHSbits.CH0NA = 0; //Negative input is Vref-
+    AD1CHSbits.CH0NA = 0;                   //Negative input is Vref-
 
     AD1CHSbits.CH0SB = 0b1011;
-    AD1CHSbits.CH0SA = 12; //Ch0 input is AN11/RB13
+    AD1CHSbits.CH0SA = 12;                  //Ch0 input is AN11/RB13
     
-    AD1CON1bits.ADSIDL = 0; //Continue in idle
+    AD1CON1bits.ADSIDL = 0;                 //Continue in idle
     AD1CON1bits.FORM = 0b00;
-    AD1CON1bits.SSRC = 0b000; //Clearing SAMP bit starts conversion
-    AD1CON1bits.ASAM = 0; //Start sampling when SAMP bit is set
+    AD1CON1bits.SSRC = 0b000;               //Clearing SAMP bit starts conversion
+    AD1CON1bits.ASAM = 0;                   //Start sampling when SAMP bit is set
 
-    AD1CON2bits.VCFG = 0b000; //Vr+ = AVDD, Vr- = AVSS.
+    AD1CON2bits.VCFG = 0b000;               //Vr+ = AVDD, Vr- = AVSS.
     AD1CON2bits.OFFCAL = 0;
-    AD1CON2bits.CSCNA = 0; // Don't scan inputs
+    AD1CON2bits.CSCNA = 0;                  // Don't scan inputs
     AD1CON2bits.SMPI = 0b0000;
-    AD1CON2bits.BUFM = 0; //Buffer configured as 16-bit word
-    AD1CON2bits.ALTS = 0; //Always use MUXA as MUX
+    AD1CON2bits.BUFM = 0;                   //Buffer configured as 16-bit word
+    AD1CON2bits.ALTS = 0;                   //Always use MUXA as MUX
 
-    AD1CON3bits.ADRC = 1; //So that it can run in sleep mode
+    AD1CON3bits.ADRC = 1;                   //So that it can run in sleep mode
     AD1CON3bits.SAMC = 0b11111;
     AD1CON3bits.ADCS = 0b11111;
     
     TRISBbits.TRISB12 = 1;
 
     //Interrupts
-    IPC3bits.AD1IP =  0x5; //Priority       
-    IFS0bits.AD1IF = 0; // clear interrupt flag
+    IPC3bits.AD1IP =  0x5;                  //Priority       
+    IFS0bits.AD1IF = 0;                     // clear interrupt flag
     //IEC0bits.AD1IE = 1; //enable
-    IEC0bits.AD1IE = 0; //disable
+    IEC0bits.AD1IE = 0;                     //disable
         
 }
 
 float do_CTMU(void){
-    CTMUCONbits.CTMUEN = 1; //Disable, enable in do_CTMU
+    CTMUCONbits.CTMUEN = 1;                 //Disable, enable in do_CTMU
     
     AD1CON1bits.SAMP = 1;
     CTMUCONbits.EDG1STAT = 0;    
@@ -98,7 +104,7 @@ float do_CTMU(void){
     
     CTMUCONbits.EDG1STAT = 0;
     unsigned int raw = ADC1BUF0;
-    float voltage = raw * 0.003173; //The coefficient is 3.25/1024
+    float voltage = raw * 0.003173;         //The coefficient is 3.25/1024
     
     return 0.0055*0.07/voltage;
 

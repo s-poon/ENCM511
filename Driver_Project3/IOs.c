@@ -36,42 +36,42 @@ void IOcheck(){
     // track LED on/off
     static uint8_t LED = 0;
     
-    if(buttonsPress == 3){ // No PB are being pressed
-        LED = 0; // Turn off LED
-        LATBbits.LATB8 = LED; // Set output to 0 (turn off LED)
+    if(buttonsPress == 3){              // No PB are being pressed
+        LED = 0;                        // Turn off LED
+        LATBbits.LATB8 = LED;           // Set output to 0 (turn off LED)
     }
-    else if(buttonsPress <= 1){ // Two or more PB pressed together
-        LED = 1; // Turn on LED
-        LATBbits.LATB8 = LED; // Set output to 1 (turn on LED)
+    else if(buttonsPress <= 1){         // Two or more PB pressed together
+        LED = 1;                        // Turn on LED
+        LATBbits.LATB8 = LED;           // Set output to 1 (turn on LED)
     }
-    else if(PORTAbits.RA2 == 0){ // PB1 being pressed
-        if(LED == 0){ // switch LED value to emulate blinking
-            LED = 1; // Set LED to 1 if its 0
+    else if(PORTAbits.RA2 == 0){        // PB1 being pressed
+        if(LED == 0){                   // switch LED value to emulate blinking
+            LED = 1;                    // Set LED to 1 if its 0
         }
         else{
-            LED = 0; // Set LED to 0 if its 1
+            LED = 0;                    // Set LED to 0 if its 1
         } 
-        LATBbits.LATB8 = LED; // Turn LED on/off    
-        Delay_ms(1000); // 1 second delay using timer & interrupts
+        LATBbits.LATB8 = LED;           // Turn LED on/off    
+        Delay_ms(1000);                 // 1 second delay using timer & interrupts
     }
-    else if(PORTAbits.RA4 == 0){ // PB2 being pressed
-        if(LED == 0){ // switch LED value to emulate blinking
-            LED = 1; // Set LED to 1 if its 0
+    else if(PORTAbits.RA4 == 0){        // PB2 being pressed
+        if(LED == 0){                   // switch LED value to emulate blinking
+            LED = 1;                    // Set LED to 1 if its 0
         }
         else{
-            LED = 0; // Set LED to 0 if its 1
+            LED = 0;                    // Set LED to 0 if its 1
         } 
-        LATBbits.LATB8 = LED; // Turn LED on/off    
-        Delay_ms(2000); // 2 second delay using timer & interrupts
+        LATBbits.LATB8 = LED;           // Turn LED on/off    
+        Delay_ms(2000);                 // 2 second delay using timer & interrupts
     }
-    else if(PORTBbits.RB4 == 0){ // PB3 being pressed
-        if(LED == 0){ // switch LED value to emulate blinking
-            LED = 1; // Set LED to 1 if its 0
+    else if(PORTBbits.RB4 == 0){        // PB3 being pressed
+        if(LED == 0){                   // switch LED value to emulate blinking
+            LED = 1;                    // Set LED to 1 if its 0
         }
         else{
-            LED = 0; // Set LED to 0 if its 1
+            LED = 0;                    // Set LED to 0 if its 1
         } 
-        LATBbits.LATB8 = LED; // Turn LED on/off    
-        Delay_ms(3000); // 3 second delay using timer & interrupts
+        LATBbits.LATB8 = LED;           // Turn LED on/off    
+        Delay_ms(3000);                 // 3 second delay using timer & interrupts
     }
 }

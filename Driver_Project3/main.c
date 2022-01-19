@@ -20,34 +20,28 @@
 
 
 //Preprocessor directives - Configuration bits for MCU start up
-#pragma config FCKSM = CSECMD // Clock switching is enabled, clock monitor disabled
+#pragma config FCKSM = CSECMD                                   // Clock switching is enabled, clock monitor disabled
 #pragma config ICS = PGx2
 
 // MACROS for Idle, Sleep modes
 #define Nop() {__asm__ volatile ("nop");}
 #define ClrWdt() {__asm__ volatile ("clrwdt");}
-#define Sleep() {__asm__ volatile ("pwrsav #0");}   //Sleep() - put MCU in sleep mode - CPU and some peripherals off
-#define Idle() {__asm__ volatile ("pwrsav #1");}    //Idle() - put MCU in idle mode - only CPU off
-#define dsen() {__asm__ volatile ("BSET DSCON, #15");} //
+#define Sleep() {__asm__ volatile ("pwrsav #0");}               //Sleep() - put MCU in sleep mode - CPU and some peripherals off
+#define Idle() {__asm__ volatile ("pwrsav #1");}                //Idle() - put MCU in idle mode - only CPU off
+#define dsen() {__asm__ volatile ("BSET DSCON, #15");} 
 
 //MAIN
 void main(void) {
      
     // Change Clock
-    NewClk(32); // 8 for 8 MHz; 500 for 500 kHz; 32 for 32 kHz
-    IOinit(); // Initialize IO pins and timer
-    TimeDelayInit(); // Initialize the timer
-    
-    
-
-    
+    NewClk(32);                                                 // 8 for 8 MHz; 500 for 500 kHz; 32 for 32 kHz
+    IOinit();                                                   // Initialize IO pins and timer
+    TimeDelayInit();                                            // Initialize the timer
 
     while(1){
-        IOcheck(); // Check for state changes
+        IOcheck();                                              // Check for state changes
     }	
-
-    
-    
+  
     return;
 }
 

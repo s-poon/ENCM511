@@ -21,7 +21,7 @@ void IOinit(){
     TRISBbits.TRISB8 = 0;       // Sets RB0-GPIO4 as output
     TRISBbits.TRISB12 = 0;      // Sets RN12 as output
     TRISAbits.TRISA6 = 0;       // Sets RA6 as output
-//    TRISBbits.TRISB15 = 0;      // Sets RB1 as frequency port 
+    TRISBbits.TRISB15 = 0;      // Sets RB1 as frequency port 
     
     
     
@@ -34,7 +34,7 @@ void IOinit(){
     CNEN1bits.CN1IE = 1;        // Sets CN1 for CN Interrupt (input 2)
     CNEN2bits.CN30IE = 1;       // Sets CN30 for CN Interrupt (input 3)
     IEC1bits.CNIE = 1;          // Enable interrupt by setting to 1
-    IPC4bits.CNIP1 = 0b111;         // CN interrupt priority to highest (7)
+    IPC4bits.CNIP1 = 0b111;     // CN interrupt priority to highest (7)
 
 
 }

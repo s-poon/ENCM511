@@ -1,8 +1,7 @@
-/* 
- * File:   CTMU.h
- * Author: Me
- *
- * Created on 10 December 2021, 00:10
+/*
+ * File:   main.c
+ * Author: Steven, Anand, Jenna
+ * Created on October 6, 2021, 11:43 AM
  */
 
 #ifndef CTMU_H

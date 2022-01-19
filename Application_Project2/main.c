@@ -32,24 +32,24 @@
 void main(void) {
      
     // Change Clock
-    NewClk(32); // 8 for 8 MHz; 500 for 500 kHz; 32 for 32 kHz
-    IOinit(); // Initialize IO pins, pull up, and interrupts
-    TimeDelayInit(); // Initialize the timer
-    InitUART2();
-    CTMUInit();
-//    InitIC();
-//    TRISBbits.TRISB15 = 0; //enable RB1 as frequency port 
+    NewClk(32);                 // 8 for 8 MHz; 500 for 500 kHz; 32 for 32 kHz
+    IOinit();                   // Initialize IO pins, pull up, and interrupts
+    TimeDelayInit();            // Initialize the timer
+    InitUART2();                // Initialize UART module
+    CTMUInit();                 // Initialize the CTMU
+    InitIC();                   // Initialize the Input Capture
+    TRISBbits.TRISB15 = 0;      // enable RB1 as frequency port 
     REFOCONbits.ROSEL = 0; 
     REFOCONbits.RODIV = 0b0111;
     REFOCONbits.ROEN = 1; 
 
     
-//    uint16_t ADCValue; // ADC value
+
     while(1){ // main loop
         voltmeter();
         ohmmeter();
         capacitance();
-//        capture();
+        capture();
         Idle(); // Idle and wait for interrupt
     }	
  

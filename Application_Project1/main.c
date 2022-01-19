@@ -28,21 +28,14 @@
 void main(void) {
      
     // Change Clock
-    NewClk(32); // 8 for 8 MHz; 500 for 500 kHz; 32 for 32 kHz
-    InitUART2();
-    IOinit(); // Initialize IO pins, pull up, and interrupts
-    TimeDelayInit(); // Initialize the timer
-    //InitUART2();
-    
+    NewClk(32);         // 8 for 8 MHz; 500 for 500 kHz; 32 for 32 kHz
+    InitUART2();        // Initialize the UART Module
+    IOinit();           // Initialize IO pins, pull up, and interrupts
+    TimeDelayInit();    // Initialize the timer
 
-    
-    //uint16_t result;
     while(1){
         IOcheck();
     }	
-
-    
-    
     return;
 }
 
