@@ -37,16 +37,10 @@ void main(void) {
     IOinit(); // Initialize IO pins and timer
     TimeDelayInit(); // Initialize the timer
     
-    
-
-    
-
     while(1){
         IOcheck(); // Check for state changes
     }	
 
-    
-    
     return;
 }
 
