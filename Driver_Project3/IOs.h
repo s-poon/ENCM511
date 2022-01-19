@@ -1,8 +1,4 @@
-/*
- * File:   main.c
- * Author: Steven, Anand, Jenna
- * Created on October 6, 2021, 11:43 AM
- */
+
 #ifndef IOS_H
 #define	IOS_H
 
@@ -18,4 +14,5 @@ extern "C" {
 
 void IOinit(); // member function init
 void IOcheck(); // implements IO  checks and LED blinking functions
+void __attribute__((interrupt, no_auto_psv))_CNInterrupt(void);
 #endif	/* ends IOS_H */
