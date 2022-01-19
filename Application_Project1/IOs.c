@@ -48,9 +48,9 @@ void IOcheck(){
     
     static uint8_t LED = 0;                             // set led to off originally
     
-    while (x == 4){                                     //PB1 is pressed
-        minutes +=1;                                    //minutes are incremented by one
-        if(minutes >= 60){                              //minutes have a max of 59
+    while (x == 4){                                     // PB1 is pressed
+        minutes +=1;                                    // minutes are incremented by one
+        if(minutes >= 60){                              // minutes have a max of 59
             minutes = 59;
             x = 10;
             Idle();
@@ -62,7 +62,7 @@ void IOcheck(){
         Disp2String("m : ");
         Disp2Dec(seconds);
         Disp2String("s");
-        Delay_ms(500);                                  //delays enough time to stop if needed
+        Delay_ms(500);                                  // delays enough time to stop if needed
         if(PORTAbits.RA2 != 0){
             x = 10;
             if(start == 1){
@@ -74,8 +74,8 @@ void IOcheck(){
             Idle();
         }
     }
-    while(x == 5){                                      //PB2 is pressed
-        seconds+=1;                                     //seconds are incremented by 1 
+    while(x == 5){                                      // PB2 is pressed
+        seconds+=1;                                     // seconds are incremented by 1 
         if(seconds > 59){
             seconds = 59;
             x = 10;
@@ -88,7 +88,7 @@ void IOcheck(){
         Disp2String("m : ");
         Disp2Dec(seconds);
         Disp2String("s");
-        Delay_ms(500);                                  //delays long enough to stop if needed 
+        Delay_ms(500);                                  // Delays long enough to stop if needed 
         if(PORTAbits.RA4 != 0 ){
             x = 10;
             if(start == 1){
@@ -100,7 +100,7 @@ void IOcheck(){
             Idle();
         }
     }
-    while(x ==7){                                       //PB 3 is pressed for longer than 3 seconds
+    while(x ==7){                                       // PB 3 is pressed for longer than 3 seconds
         XmitUART2('\r', 1);                             // Start of the line
         XmitUART2(' ', 17);
         XmitUART2('\r', 1);                             // Start of the line
@@ -111,9 +111,9 @@ void IOcheck(){
         x = 10;
         Idle();
     }
-    while(x == 8){                                      //PB3 pressed for less than 3 seconds
-        if(start == 0){                                 //PB3 pressed and start 
-            seconds-=1;                                 //decrement seconds 
+    while(x == 8){                                      // PB3 pressed for less than 3 seconds
+        if(start == 0){                                 // PB3 pressed and start 
+            seconds-=1;                                 // decrement seconds 
             if(LED == 0){                               // switch LED value to emulate blinking
                 LED = 1;                                // Set LED to 1 if its 0
             }
